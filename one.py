@@ -8,14 +8,13 @@ def quick_job():
     add_to_the_end = []
     for wallet in wallets_sorted_by_frequency:
         if wallet not in checked_wallets:
+            this_wallet_amounts_list = [l for l in wallets_and_amounts_list if wallet == l.split(" ")[0]]
             if wallets.count(wallet) > 8:
-                this_wallet_amounts_list = [l for l in wallets_and_amounts_list if wallet == l.split(" ")[0]]
                 first_part, second_part = this_wallet_amounts_list[:8], this_wallet_amounts_list[8:]
                 for k in range(0, 8):
                     final_dict[k*43 + len(checked_wallets)] = first_part[k]
                 add_to_the_end.extend(second_part)
             else:
-                this_wallet_amounts_list = [l for l in wallets_and_amounts_list if wallet == l.split(" ")[0]]
                 for k in range(0, wallets.count(wallet)):
                     place_to_put = 0
                     while (place_to_put + (k*43 + len(checked_wallets))) in final_dict:
